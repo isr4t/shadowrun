@@ -4,8 +4,7 @@ import { TiLocationArrow } from "react-icons/ti";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-gsap.registerPlugin(ScrollTrigger)
-
+gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(1);
@@ -17,10 +16,7 @@ const Hero = () => {
   const nextVideoRef = useRef(null);
   const currentVideoRef = useRef(null);
 
-  const handleVideoLoad = () => {
-    setLoadedVideos((prev) => prev + 1);
-  };
-
+  const handleVideoLoad = () => setLoadedVideos((prev) => prev + 1);
   const upcomingVideoIndex = (currentIndex % totalVideos) + 1;
 
   const handleMiniVdClick = () => {
@@ -28,21 +24,17 @@ const Hero = () => {
     setCurrentIndex(upcomingVideoIndex);
   };
 
-
   useEffect(() => {
-    if(loadedVideos === totalVideos -1 ){
+    if (loadedVideos === totalVideos - 1) {
       setIsLoading(false);
     }
-
-  }, [loadedVideos])
+  }, [loadedVideos]);
 
   useGSAP(
     () => {
       if (hasClicked) {
-        // Ensure visibility before animation
         gsap.set("#next-video", { visibility: "visible" });
 
-        // Animate next video expansion
         gsap.to("#next-video", {
           transformOrigin: "center center",
           scale: 1,
@@ -53,7 +45,6 @@ const Hero = () => {
           onStart: () => nextVideoRef.current?.play(),
         });
 
-        // Animate current video shrinking
         gsap.from("#current-video", {
           transformOrigin: "center center",
           scale: 0,
@@ -64,59 +55,49 @@ const Hero = () => {
     },
     { dependencies: [currentIndex], revertOnUpdate: true }
   );
-   
 
   useGSAP(() => {
-  gsap.set('#video-frame', {
-    clipPath: 'polygon(14% 0%, 72% 0%, 90% 90%, 0% 100%)',
-    borderRadius: '0 0 40% 10%'
+    gsap.set("#video-frame", {
+      clipPath: "polygon(14% 0%, 72% 0%, 90% 90%, 0% 100%)",
+      borderRadius: "0 0 40% 10%",
+    });
+    gsap.from("#video-frame", {
+      clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+      borderRadius: "0 0 0 0",
+      ease: "power1.inOut",
+      scrollTrigger: {
+        trigger: "#video-frame",
+        start: "center center",
+        end: "bottom center",
+        scrub: true,
+      },
+    });
+  });
 
-  })
-    gsap.from('#video-frame', {
-      clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-       borderRadius: '0 0 0 0',
-       ease: 'power1.inOut',
-       scrollTrigger: {
-        trigger: '#video-frame',
-        start: 'center center',
-        end: 'bottom center',
-        scrub: true, 
-
-       }
-
-    })
-
-  })
-    
-
-   
   const getVideoSrc = (index) => `videos/hero-${index}.mp4`;
 
   return (
-    <div className="relative h-dvh w-screen overflow-x-hidden ">
-
-    {isLoading && (
-      <div className="flex-center absolute z-[100] h-dvh w-screen overflow-hidden bg-violet-50 ">
-        <div className="three-body">
-          <div className="three-body__dot"/>
-           <div className="three-body__dot"/>
-           <div className="three-body__dot"/>
-
-
+    <div className="relative h-dvh w-screen overflow-x-hidden">
+      {isLoading && (
+        <div className="flex-center absolute z-[100] h-dvh w-screen overflow-hidden bg-violet-50">
+          <div className="three-body">
+            <div className="three-body__dot" />
+            <div className="three-body__dot" />
+            <div className="three-body__dot" />
+          </div>
         </div>
-      </div>
-    )}
+      )}
 
+      {/* ========== VIDEO FRAME ========== */}
       <div
         id="video-frame"
-        className="relative z-10  h-dvh w-screen overflow-hidden rounded-lg bg-blue-100"
+        className="relative z-10 h-dvh w-screen overflow-hidden rounded-lg bg-blue-100"
       >
         <div>
           <div className="mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg">
             <div
               onClick={handleMiniVdClick}
-              className="origin-center scale-50 opacity-0 transition-all duration-500 
-                ease-in hover:scale-100 hover:opacity-100"
+              className="origin-center scale-50 opacity-0 transition-all duration-500 ease-in hover:scale-100 hover:opacity-100"
             >
               <video
                 ref={currentVideoRef}
@@ -160,8 +141,9 @@ const Hero = () => {
           GAMING
         </h1>
 
+        {/* === Text Section (added top margin here) === */}
         <div className="absolute left-0 top-0 z-40 w-full h-full">
-          <div className="px-5 sm:px-10 mt-8">
+          <div className="px-5 sm:px-10 mt-24 sm:mt-28 md:mt-32">
             <h1
               className="special-font text-blue-100 font-bold 
                  text-4xl sm:text-5xl md:text-6xl tracking-wide"
@@ -181,6 +163,7 @@ const Hero = () => {
         </div>
       </div>
 
+      {/* Bottom "GAMING" text */}
       <h1
         className="special-font absolute bottom-8 right-8 
              text-black text-4xl sm:text-4xl md:text-5xl 
@@ -193,4 +176,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
