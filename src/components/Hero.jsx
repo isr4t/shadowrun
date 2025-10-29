@@ -138,17 +138,17 @@ const Hero = () => {
              text-blue-100 text-3xl sm:text-4xl md:text-5xl 
              font-extrabold uppercase tracking-wide"
         >
-          GAMING
+          <b>GAM</b>I<b>NG</b>
         </h1>
 
-        {/* === Text Section (added top margin here) === */}
+   
         <div className="absolute left-0 top-0 z-40 w-full h-full">
           <div className="px-5 sm:px-10 mt-24 sm:mt-28 md:mt-32">
             <h1
               className="special-font text-blue-100 font-bold 
                  text-4xl sm:text-5xl md:text-6xl tracking-wide"
             >
-              SHADOW<b>R</b>UN
+              S<b>HA</b>D<b>O</b>WR<b>U</b>N
             </h1>
             <p className="mb-5 max-w-64 font-sans text-blue-100">
               Enter the Metagame Layer <br /> Unleash the Play Economy
@@ -163,7 +163,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Bottom "GAMING" text */}
+  
       <h1
         className="special-font absolute bottom-8 right-8 
              text-black text-4xl sm:text-4xl md:text-5xl 
