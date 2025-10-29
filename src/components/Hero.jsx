@@ -148,7 +148,7 @@ const Hero = () => {
               className="special-font text-blue-100 font-bold 
                  text-4xl sm:text-5xl md:text-6xl tracking-wide"
             >
-              Shadow<b>R</b>un
+              SHADOW<b>R</b>UN
             </h1>
             <p className="mb-5 max-w-64 font-sans text-blue-100">
               Enter the Metagame Layer <br /> Unleash the Play Economy
