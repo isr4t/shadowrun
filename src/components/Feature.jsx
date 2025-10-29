@@ -10,22 +10,21 @@ const BentoTilt = ({ children, className = '' }) => {
 
     const { left, top, width, height } = itemRef.current.getBoundingClientRect();
 
-    // ✅ Correct axis mapping
+
     const relativeX = (e.clientX - left) / width;
     const relativeY = (e.clientY - top) / height;
 
-    // ✅ Adjust tilt strength (feel free to tweak values)
+ 
     const tiltX = (relativeY - 0.5) * 10;
     const tiltY = (relativeX - 0.5) * -10;
 
-    // ✅ Correct transform syntax
     const newTransform = `perspective(700px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(0.98)`;
 
     setTransformStyle(newTransform);
   };
 
   const handleMouseLeave = () => {
-    // Reset smoothly
+
     setTransformStyle('');
   };
 
